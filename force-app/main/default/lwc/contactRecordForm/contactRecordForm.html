@@ -1,0 +1,39 @@
+<template>
+  <lightning-card>
+    <lightning-input type="number" label="Number Of Contacts to be retrieved" onchange={numberOfContactChangeHandler} >    
+    </lightning-input>
+    <lightning-button label="Get Contacts" onclick={getContacts} ></lightning-button>
+    <lightning-button
+      class="slds-align_absolute-center"
+      variant="brand"
+      label="Delete"
+      title="Delee Contact"
+      onclick={deleteSelectedContact}
+    >
+    </lightning-button>
+  </lightning-card>
+  <lightning-card title="All Contacts">
+    <ul>
+      <template if:true={responseReceived}>
+        <template for:each={data} for:item="contact">
+          <li key={contact.con.Id}>
+            
+              <lightning-tile label={contact.name} type="media">
+                <!--<lightning-icon
+                  slot="media"
+                  icon-name="standard:contact"
+                ></lightning-icon>-->
+                  <lightning-input 
+                    type="checkbox"
+                    value={contact.con.Id}
+                    onchange={handleChange}
+                    
+                  ></lightning-input>
+                    Name:{contact.con.Name}
+              </lightning-tile>
+          </li>
+        </template>
+      </template>
+    </ul>
+  </lightning-card>
+</template>
